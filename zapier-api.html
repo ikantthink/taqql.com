@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Primary Meta Tags -->
+    <title>Taqql Zapier API Documentation - Integration Guide</title>
+    <meta name="title" content="Taqql Zapier API Documentation - Integration Guide">
+    <meta name="description" content="Comprehensive API documentation for integrating Taqql's construction management platform with Zapier workflows. Complete guide with authentication, endpoints, and examples.">
+    <meta name="keywords" content="Taqql API, Zapier integration, construction management API, project tracking API, timesheet API, expense API, webhook integration">
+    <meta name="author" content="Taqql">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://taqql.com/zapier-api.html">
+    <meta property="og:title" content="Taqql Zapier API Documentation - Integration Guide">
+    <meta property="og:description" content="Comprehensive API documentation for integrating Taqql's construction management platform with Zapier workflows.">
+    <meta property="og:image" content="assets/img/logo_dark.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://taqql.com/zapier-api.html">
+    <meta property="twitter:title" content="Taqql Zapier API Documentation - Integration Guide">
+    <meta property="twitter:description" content="Comprehensive API documentation for integrating Taqql's construction management platform with Zapier workflows.">
+    <meta property="twitter:image" content="assets/img/logo_dark.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://taqql.com/zapier-api.html">
+    
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link href="assets/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendors/themify-icon/themify-icons.css" rel="stylesheet">
+    <link href="assets/vendors/icomoon/style.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/vendors/slick/slick.css" rel="stylesheet">
+    <link href="assets/vendors/slick/slick-theme.css" rel="stylesheet">
+    <link href="assets/vendors/animation/animate.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/responsive.css" rel="stylesheet">
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    
+    <style>
+        .api-doc {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .api-doc h2 {
+            color: #2d3748;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .api-doc h3 {
+            color: #4a5568;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .api-doc h4 {
+            color: #718096;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .endpoint-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .endpoint-get { background: #c6f6d5; color: #22543d; }
+        .endpoint-post { background: #fed7d7; color: #742a2a; }
+        .endpoint-put { background: #feebc8; color: #744210; }
+        .endpoint-patch { background: #e6fffa; color: #234e52; }
+        .endpoint-delete { background: #fed7d7; color: #742a2a; }
+        
+        .code-block {
+            background: #1a202c;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        
+        .table-responsive {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .table th {
+            background: #f7fafc;
+            color: #2d3748;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .nav-tabs {
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .nav-tabs .nav-link {
+            color: #718096;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+        }
+        
+        .nav-tabs .nav-link.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+            background: transparent;
+        }
+        
+        .alert {
+            border-radius: 8px;
+            border: none;
+            padding: 1rem 1.5rem;
+        }
+        
+        .alert-info {
+            background: #ebf8ff;
+            color: #2b6cb0;
+        }
+        
+        .alert-warning {
+            background: #fffbeb;
+            color: #92400e;
+        }
+        
+        .alert-success {
+            background: #f0fff4;
+            color: #22543d;
+        }
+        
+        .toc {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h5 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc a {
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+        
+        .toc a:hover {
+            color: #667eea;
+        }
+        
+        .toc .toc-level-2 {
+            padding-left: 1rem;
+        }
+        
+        .toc .toc-level-3 {
+            padding-left: 2rem;
+        }
+        
+        .status-code {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .status-200 { background: #c6f6d5; color: #22543d; }
+        .status-400 { background: #fed7d7; color: #742a2a; }
+        .status-401 { background: #fed7d7; color: #742a2a; }
+        .status-404 { background: #fed7d7; color: #742a2a; }
+        .status-405 { background: #fed7d7; color: #742a2a; }
+        .status-500 { background: #fed7d7; color: #742a2a; }
+    </style>
+</head>
+
+<body data-scroll-animation="true">
+
+    <div class="body_wrapper">
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="spinner">
+                </div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="I" class="letters-loading">
+                        a
+                    </span>
+                    <span data-text-preloader="C" class="letters-loading">
+                        q
+                    </span>
+                    <span data-text-preloader="T" class="letters-loading">
+                        q
+                    </span>
+                    <span data-text-preloader="E" class="letters-loading">
+                        l
+                    </span>
+                </div>
+                <p class="text-center">Loading</p>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- start header  -->
+        <nav class="navbar navbar-expand-lg border_bottom sticky_nav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="assets/img/logo_dark.png" alt="logo" height="40"></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav menu me-lg-auto ms-lg-auto">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="roadmap.html" class="nav-link">Road Map</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+                    </ul>
+                    <div class="nav_right">
+                        <a href="https://admin.taqql.com/" class="login_btn" target="_blank">
+                            <div class="btn_text"><span>Login</span><span>Login</span></div>
+                        </a>
+                        <a href="#" class="signup_btn hover_effect">
+                            <div class="btn_text"><span>Request Beta Access</span><span>Request Beta Access</span></div>
+                        </a>
+                    </div>
+                </div>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="menu_toggle">
+                        <span class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="hamburger-cross">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </nav>
+        <!-- End header  -->
+        
+        <!-- page breadcrumb area  -->
+        <section class="saas_breadcrumb_area" data-bg-color="#F7F6FE">
+            <img class="b_shap" src="assets/img/breadcrumb_shap.png" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="breadcrumb_content">
+                            <h1 class="f_p f_700 f_size_50 l_height50 mb_20">Zapier API Documentation</h1>
+                            <p class="f_400 l_height28">Comprehensive integration guide for connecting Taqql with Zapier workflows</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End page breadcrumb area  -->
+
+        <!-- API Documentation Content -->
+        <section class="saas_subscribe_area sec_pad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- Table of Contents -->
+                        <div class="toc">
+                            <h5>Table of Contents</h5>
+                            <ul>
+                                <li><a href="#overview">Overview</a></li>
+                                <li><a href="#authentication">Authentication</a></li>
+                                <li class="toc-level-2"><a href="#auth-endpoint">Authentication Endpoint</a></li>
+                                <li class="toc-level-2"><a href="#token-validation">Token Validation</a></li>
+                                <li><a href="#core-endpoints">Core Endpoints</a></li>
+                                <li><a href="#taqql-entities">Taqql Entities</a></li>
+                                <li class="toc-level-2"><a href="#organizations">Organizations</a></li>
+                                <li class="toc-level-2"><a href="#projects">Projects</a></li>
+                                <li class="toc-level-2"><a href="#vendors">Vendors</a></li>
+                                <li class="toc-level-2"><a href="#expenses">Expenses</a></li>
+                                <li class="toc-level-2"><a href="#timesheets">Timesheet Rows</a></li>
+                                <li class="toc-level-2"><a href="#control-accounts">Control Accounts</a></li>
+                                <li class="toc-level-2"><a href="#other-entities">Other Entities</a></li>
+                                <li><a href="#webhooks">Webhooks</a></li>
+                                <li><a href="#error-handling">Error Handling</a></li>
+                                <li><a href="#best-practices">Best Practices</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-9">
+                        <!-- Overview -->
+                        <div class="api-doc" id="overview">
+                            <h2>Overview</h2>
+                            <p>This document provides comprehensive API documentation for the Taqql Zapier integration endpoints. The API is designed to enable seamless integration between Taqql's construction management platform and Zapier workflows.</p>
+                            
+                            <h3>Base URL</h3>
+                            <div class="code-block">
+                                <pre><code class="language-http">https://your-supabase-project.supabase.co/functions/v1/zapier</code></pre>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <strong>Note:</strong> Replace <code>your-supabase-project</code> with your actual Supabase project URL.
+                            </div>
+                        </div>
+
+                        <!-- Authentication -->
+                        <div class="api-doc" id="authentication">
+                            <h2>Authentication</h2>
+                            <p>The API uses token-based authentication. First authenticate to receive a token, then include it in subsequent requests.</p>
+                            
+                            <h3 id="auth-endpoint">1. Authentication Endpoint</h3>
+                            <p><span class="endpoint-badge endpoint-post">POST</span> <code>/auth/</code></p>
+                            <p>Authenticate with email/password to receive an API token.</p>
+                            
+                            <h4>Request Body</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "email": "user@example.com",
+  "password": "your-password"
+}</code></pre>
+                            </div>
+                            
+                            <h4>Response</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "person": "John Doe",
+  "email": "user@example.com",
+  "org": "Construction Company Inc",
+  "org_id": "uuid-string",
+  "key": "api-token-string",
+  "expiry": "2024-02-15T10:30:00Z"
+}</code></pre>
+                            </div>
+                            
+                            <h4>Error Response</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "error": "Invalid credentials"
+}</code></pre>
+                            </div>
+                            
+                            <h3 id="token-validation">2. Token Validation</h3>
+                            <p><span class="endpoint-badge endpoint-get">GET</span> <code>/test/</code></p>
+                            <p>Validate an existing API token.</p>
+                            
+                            <h4>Headers</h4>
+                            <div class="code-block">
+                                <pre><code class="language-http">token: your-api-token-here</code></pre>
+                            </div>
+                            
+                            <h4>Response</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "org": "Construction Company Inc",
+  "valid": true
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Core Endpoints -->
+                        <div class="api-doc" id="core-endpoints">
+                            <h2>Core Endpoints</h2>
+                            
+                            <h3>Projects List (Legacy)</h3>
+                            <p><span class="endpoint-badge endpoint-get">GET</span> <code>/projects/</code></p>
+                            <p>Get all projects for the authenticated organization.</p>
+                            
+                            <h4>Headers</h4>
+                            <div class="code-block">
+                                <pre><code class="language-http">token: your-api-token-here</code></pre>
+                            </div>
+                            
+                            <h4>Response</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">[
+  {
+    "id": 1,
+    "title": "Office Building Project",
+    "code": "OB2024-001",
+    "status": "active",
+    "client": {
+      "id": 5,
+      "title": "ABC Development Corp",
+      "type": "client"
+    }
+  }
+]</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Taqql Entities -->
+                        <div class="api-doc" id="taqql-entities">
+                            <h2>Taqql Entity Endpoints</h2>
+                            <p>All entity endpoints follow RESTful patterns and require authentication via the <code>token</code> header.</p>
+                            
+                            <h3>General Patterns</h3>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Method</th>
+                                            <th>Endpoint</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-get">GET</span></td>
+                                            <td><code>/taqql/{entity}/</code></td>
+                                            <td>List all entities</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-get">GET</span></td>
+                                            <td><code>/taqql/{entity}/{id}/</code></td>
+                                            <td>Get specific entity by ID</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-post">POST</span></td>
+                                            <td><code>/taqql/{entity}/</code></td>
+                                            <td>Create new entity</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-put">PUT</span></td>
+                                            <td><code>/taqql/{entity}/{id}/</code></td>
+                                            <td>Update entity (full update)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-patch">PATCH</span></td>
+                                            <td><code>/taqql/{entity}/{id}/</code></td>
+                                            <td>Update entity (partial update)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <h3>Headers (Required for all Taqql endpoints)</h3>
+                            <div class="code-block">
+                                <pre><code class="language-http">token: your-api-token-here
+Content-Type: application/json</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Organizations -->
+                        <div class="api-doc" id="organizations">
+                            <h2>1. Organizations</h2>
+                            <p><strong>Base Path:</strong> <code>/taqql/organizations/</code></p>
+                            
+                            <h3>GET /taqql/organizations/{id}/</h3>
+                            <p>Get organization details.</p>
+                            
+                            <h4>Response:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "id": 1,
+  "title": "Construction Company Inc",
+  "identifier": "uuid-string",
+  "payperiod_start": 1,
+  "pay_period_length": 7,
+  "labor_margin": 0.15,
+  "expense_margin": 0.10,
+  "show_week_ending": true,
+  "qbo_integration": true
+}</code></pre>
+                            </div>
+                            
+                            <h3>PUT /taqql/organizations/{id}/</h3>
+                            <p>Update organization settings.</p>
+                            
+                            <h4>Request Body:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "title": "Updated Company Name",
+  "labor_margin": 0.18,
+  "expense_margin": 0.12,
+  "qbo_integration": true
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Projects -->
+                        <div class="api-doc" id="projects">
+                            <h2>2. Projects</h2>
+                            <p><strong>Base Path:</strong> <code>/taqql/projects/</code></p>
+                            
+                            <h3>GET /taqql/projects/</h3>
+                            <p>List all projects with client relationships.</p>
+                            
+                            <h4>Response:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">[
+  {
+    "id": 1,
+    "title": "Office Building Project",
+    "code": "OB2024-001",
+    "description": "New 5-story office building",
+    "status": "active",
+    "vendor_id": 5,
+    "client_proj_id": "ABC-2024-001",
+    "client_po": "PO-12345",
+    "billing_factor": 1.0,
+    "use_wbs": true,
+    "client": {
+      "id": 5,
+      "title": "ABC Development Corp",
+      "type": "client"
+    },
+    "control_accounts": [
+      {
+        "id": 10,
+        "title": "Foundation Work",
+        "status": "active"
+      }
+    ]
+  }
+]</code></pre>
+                            </div>
+                            
+                            <h3>POST /taqql/projects/</h3>
+                            <p>Create a new project.</p>
+                            
+                            <h4>Request Body:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "title": "New Project",
+  "code": "NP2024-001",
+  "description": "Project description",
+  "status": "init",
+  "vendor_id": 5,
+  "client_proj_id": "CLIENT-REF-001",
+  "billing_factor": 1.0,
+  "use_wbs": true,
+  "use_sov": false
+}</code></pre>
+                            </div>
+                            
+                            <h3>GET /taqql/projects/{id}/</h3>
+                            <p>Get project with full related data including control accounts, contracts, and timesheet summaries.</p>
+                        </div>
+
+                        <!-- Vendors -->
+                        <div class="api-doc" id="vendors">
+                            <h2>3. Vendors</h2>
+                            <p><strong>Base Path:</strong> <code>/taqql/vendors/</code></p>
+                            <p>Handles clients, suppliers, and subcontractors.</p>
+                            
+                            <h3>GET /taqql/vendors/</h3>
+                            <p>List all vendors.</p>
+                            
+                            <h4>Response:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">[
+  {
+    "id": 5,
+    "title": "ABC Development Corp",
+    "type": "client",
+    "status": "active",
+    "code": "ABC001",
+    "email": "contact@abcdev.com",
+    "phone": 5551234567,
+    "address": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zip": "12345",
+    "contacts": [
+      {
+        "id": 1,
+        "firstname": "John",
+        "lastname": "Smith",
+        "email": "john@abcdev.com",
+        "title": "Project Manager",
+        "is_primary": true
+      }
+    ]
+  }
+]</code></pre>
+                            </div>
+                            
+                            <h3>POST /taqql/vendors/</h3>
+                            <p>Create a new vendor.</p>
+                            
+                            <h4>Request Body:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "title": "New Vendor LLC",
+  "type": "supplier",
+  "status": "active",
+  "code": "NV001",
+  "email": "contact@newvendor.com",
+  "phone": 5559876543,
+  "address": "456 Business Ave",
+  "city": "Commerce City",
+  "state": "CA",
+  "zip": "54321"
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Expenses -->
+                        <div class="api-doc" id="expenses">
+                            <h2>4. Expenses</h2>
+                            <p><strong>Base Path:</strong> <code>/taqql/expenses/</code></p>
+                            
+                            <h3>GET /taqql/expenses/</h3>
+                            <p>List all expenses with related data.</p>
+                            
+                            <h4>Query Parameters:</h4>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>person_id</code></td>
+                                            <td>Filter by person</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>ca_id</code></td>
+                                            <td>Filter by control account</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>start_date</code></td>
+                                            <td>Filter by date range (YYYY-MM-DD)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>end_date</code></td>
+                                            <td>Filter by date range (YYYY-MM-DD)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>billable</code></td>
+                                            <td>Filter by billable status (true/false)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>reimbursable</code></td>
+                                            <td>Filter by reimbursable status (true/false)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <h4>Response:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">[
+  {
+    "id": 100,
+    "amount": 75.50,
+    "expense_date": "2024-01-15",
+    "pmt_type": "Company Card",
+    "notes": "Client lunch meeting",
+    "billable": true,
+    "reimbursable": false,
+    "person": {
+      "firstname": "Jane",
+      "lastname": "Doe",
+      "email": "jane@company.com"
+    },
+    "control_account": {
+      "title": "Project Management",
+      "project": {
+        "title": "Office Building Project",
+        "code": "OB2024-001"
+      }
+    },
+    "expense_type": {
+      "title": "Meals & Entertainment"
+    },
+    "vendor": {
+      "title": "Restaurant ABC",
+      "type": "supplier"
+    },
+    "files": [
+      {
+        "file": {
+          "title": "receipt.pdf",
+          "path": "/files/receipts/receipt.pdf"
+        }
+      }
+    ]
+  }
+]</code></pre>
+                            </div>
+                            
+                            <h3>POST /taqql/expenses/</h3>
+                            <p>Create a new expense.</p>
+                            
+                            <h4>Request Body:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "person_id": 10,
+  "amount": 125.75,
+  "expense_type_id": 3,
+  "expense_date": "2024-01-20",
+  "pmt_type": "Company Card",
+  "notes": "Office supplies",
+  "billable": false,
+  "reimbursable": false,
+  "ca_id": 15,
+  "vendor_id": 8
+}</code></pre>
+                            </div>
+                            
+                            <h4>Payment Types:</h4>
+                            <ul>
+                                <li><code>Company Card</code></li>
+                                <li><code>Company Check</code></li>
+                                <li><code>ACH</code></li>
+                                <li><code>Online Banking</code></li>
+                                <li><code>Company Cash</code></li>
+                                <li><code>Employee Funds</code></li>
+                            </ul>
+                        </div>
+
+                        <!-- Timesheet Rows -->
+                        <div class="api-doc" id="timesheets">
+                            <h2>5. Timesheet Rows</h2>
+                            <p><strong>Base Path:</strong> <code>/taqql/timesheet_rows/</code></p>
+                            
+                            <h3>GET /taqql/timesheet_rows/</h3>
+                            <p>List timesheet entries.</p>
+                            
+                            <h4>Query Parameters:</h4>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Parameter</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>person_id</code></td>
+                                            <td>Filter by person</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>project_id</code></td>
+                                            <td>Filter by project</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>ca_id</code></td>
+                                            <td>Filter by control account</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>week</code></td>
+                                            <td>Filter by week number</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>year</code></td>
+                                            <td>Filter by year</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>start_date</code></td>
+                                            <td>Filter by date range</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>end_date</code></td>
+                                            <td>Filter by date range</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>locked</code></td>
+                                            <td>Filter by locked status</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <h4>Response:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">[
+  {
+    "id": 200,
+    "week": 3,
+    "year": 2024,
+    "we_date": "2024-01-21",
+    "comments": "Regular work week",
+    "locked": false,
+    "d1_st_hours": 8.0,
+    "d2_st_hours": 8.0,
+    "d3_st_hours": 8.0,
+    "d4_st_hours": 8.0,
+    "d5_st_hours": 8.0,
+    "d1_ot_hours": 0.0,
+    "d1_perdiem": 75.00,
+    "person": {
+      "firstname": "Mike",
+      "lastname": "Johnson",
+      "email": "mike@company.com"
+    },
+    "project": {
+      "title": "Office Building Project",
+      "code": "OB2024-001",
+      "client": {
+        "title": "ABC Development Corp"
+      }
+    },
+    "control_account": {
+      "title": "Foundation Work",
+      "client_code": "FOUND-001"
+    },
+    "wage": {
+      "base_rate": 35.00,
+      "burden_rate": 45.50,
+      "ot_burden_rate": 52.50,
+      "perdiem_rate": 75.00
+    }
+  }
+]</code></pre>
+                            </div>
+                            
+                            <h3>POST /taqql/timesheet_rows/</h3>
+                            <p>Create a new timesheet entry.</p>
+                            
+                            <h4>Request Body:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "ca_id": 15,
+  "project_id": 1,
+  "person_id": 10,
+  "wage_id": 5,
+  "week": 4,
+  "year": 2024,
+  "we_date": "2024-01-28",
+  "d1_st_hours": 8.0,
+  "d2_st_hours": 8.0,
+  "d3_st_hours": 8.0,
+  "d4_st_hours": 8.0,
+  "d5_st_hours": 8.0,
+  "d1_perdiem": 75.00,
+  "d2_perdiem": 75.00,
+  "comments": "Standard work week"
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Control Accounts -->
+                        <div class="api-doc" id="control-accounts">
+                            <h2>6. Control Accounts</h2>
+                            <p><strong>Base Path:</strong> <code>/taqql/control_accounts/</code></p>
+                            
+                            <h3>GET /taqql/control_accounts/</h3>
+                            <p>List control accounts with project relationships.</p>
+                            
+                            <h4>Response:</h4>
+                            <div class="code-block">
+                                <pre><code class="language-json">[
+  {
+    "id": 15,
+    "title": "Foundation Work",
+    "status": "active",
+    "client_code": "FOUND-001",
+    "project": {
+      "title": "Office Building Project",
+      "code": "OB2024-001"
+    },
+    "wbs": {
+      "title": "Site Work",
+      "code": "01"
+    },
+    "cbs": {
+      "title": "Concrete",
+      "code": "03"
+    },
+    "task": {
+      "title": "Foundation Pour",
+      "code": "03.10"
+    }
+  }
+]</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Other Entities -->
+                        <div class="api-doc" id="other-entities">
+                            <h2>Other Supported Entities</h2>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Entity</th>
+                                            <th>Base Path</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Positions</strong></td>
+                                            <td><code>/taqql/positions/</code></td>
+                                            <td>Job positions/roles within the organization</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Rate Sheets</strong></td>
+                                            <td><code>/taqql/rate_sheets/</code></td>
+                                            <td>Labor rate sheets and rates</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Purchase Orders</strong></td>
+                                            <td><code>/taqql/pos/</code></td>
+                                            <td>Purchase order management</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Expense Types</strong></td>
+                                            <td><code>/taqql/expense_types/</code></td>
+                                            <td>Expense categorization</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>WBS</strong></td>
+                                            <td><code>/taqql/wbs/</code></td>
+                                            <td>Work Breakdown Structure</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Tasks</strong></td>
+                                            <td><code>/taqql/tasks/</code></td>
+                                            <td>Project tasks</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>CBS</strong></td>
+                                            <td><code>/taqql/cbs/</code></td>
+                                            <td>Cost Breakdown Structure</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Wages</strong></td>
+                                            <td><code>/taqql/wages/</code></td>
+                                            <td>Employee wage information</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Invoice Runs</strong></td>
+                                            <td><code>/taqql/invoice_run/</code></td>
+                                            <td>Billing/invoice processing runs</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Payroll Runs</strong></td>
+                                            <td><code>/taqql/payroll_runs/</code></td>
+                                            <td>Payroll processing runs</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <strong>Note:</strong> All entities follow the same RESTful patterns as described in the general patterns section above. Each entity supports GET (list and retrieve), POST (create), PUT (full update), and PATCH (partial update) operations.
+                            </div>
+                        </div>
+
+                        <!-- Webhooks -->
+                        <div class="api-doc" id="webhooks">
+                            <h2>Webhooks</h2>
+                            <p><strong>Base Path:</strong> <code>/webhooks/</code></p>
+                            <p>The API supports incoming webhooks for triggering Zapier workflows.</p>
+                            
+                            <h3>Webhook Endpoints</h3>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Method</th>
+                                            <th>Endpoint</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-post">POST</span></td>
+                                            <td><code>/webhooks/zapier/</code></td>
+                                            <td>Receive webhooks from Zapier integrations</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-post">POST</span></td>
+                                            <td><code>/webhooks/qbo/</code></td>
+                                            <td>Receive webhooks from QuickBooks Online</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-post">POST</span></td>
+                                            <td><code>/webhooks/time/</code></td>
+                                            <td>Receive time tracking webhooks</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-post">POST</span></td>
+                                            <td><code>/webhooks/expense/</code></td>
+                                            <td>Receive expense-related webhooks</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="endpoint-badge endpoint-post">POST</span></td>
+                                            <td><code>/webhooks/project/</code></td>
+                                            <td>Receive project-related webhooks</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <h3>Webhook Payload Format</h3>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "event_type": "timesheet_updated",
+  "data": {
+    "organization_id": 1,
+    "entity_id": 200,
+    "entity_type": "timesheet_row",
+    "action": "update",
+    "changes": {
+      "d1_st_hours": 8.0,
+      "locked": true
+    }
+  },
+  "timestamp": "2024-01-20T15:30:00Z"
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Error Handling -->
+                        <div class="api-doc" id="error-handling">
+                            <h2>Error Handling</h2>
+                            
+                            <h3>Error Response Format</h3>
+                            <div class="code-block">
+                                <pre><code class="language-json">{
+  "error": "Error message describing what went wrong"
+}</code></pre>
+                            </div>
+                            
+                            <h3>Common HTTP Status Codes</h3>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Status Code</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="status-code status-200">200</span></td>
+                                            <td>Success</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="status-code status-400">400</span></td>
+                                            <td>Bad Request (validation errors, missing fields)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="status-code status-401">401</span></td>
+                                            <td>Unauthorized (invalid or missing token)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="status-code status-404">404</span></td>
+                                            <td>Not Found (entity doesn't exist)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="status-code status-405">405</span></td>
+                                            <td>Method Not Allowed</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="status-code status-500">500</span></td>
+                                            <td>Internal Server Error</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <h3>Authentication Errors</h3>
+                            <ul>
+                                <li><code>Missing token</code> - No token provided in headers</li>
+                                <li><code>Invalid or expired token</code> - Token is malformed or expired</li>
+                                <li><code>Invalid credentials</code> - Email/password authentication failed</li>
+                            </ul>
+                        </div>
+
+                        <!-- Best Practices -->
+                        <div class="api-doc" id="best-practices">
+                            <h2>Best Practices</h2>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Token Management</h4>
+                                    <p>Store tokens securely and refresh them before expiry. API tokens are valid for 30 days from creation.</p>
+                                    
+                                    <h4>Error Handling</h4>
+                                    <p>Always check for error responses and handle them appropriately in your integration.</p>
+                                    
+                                    <h4>Data Validation</h4>
+                                    <p>Validate required fields before sending requests to avoid 400 errors.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Pagination</h4>
+                                    <p>For large datasets, implement pagination on the client side to manage response sizes.</p>
+                                    
+                                    <h4>Webhooks</h4>
+                                    <p>Use webhooks for real-time integration rather than frequent polling to improve performance.</p>
+                                    
+                                    <h4>Data Scoping</h4>
+                                    <p>All data is automatically scoped to the authenticated user's organization. Users can only access data belonging to their organization.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-warning">
+                                <strong>Rate Limits:</strong> There are no explicit rate limits, but reasonable usage is expected. Avoid making excessive requests in short time periods.
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <strong>File Attachments:</strong> Some entities (expenses, timesheet rows, POs) support file attachments. File handling is done through separate file upload endpoints and then referenced by ID in the entity creation/update requests.
+                            </div>
+                        </div>
+
+                        <!-- Support -->
+                        <div class="api-doc">
+                            <h2>Support</h2>
+                            <p>For technical support or questions about the API, contact the development team or refer to the project documentation.</p>
+                            
+                            <div class="alert alert-success">
+                                <strong>Ready to integrate?</strong> Start by authenticating with your Taqql credentials and exploring the available endpoints. The API is designed to be intuitive and follows RESTful conventions for easy integration.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- footer area start -->
+        <footer class="saas_footer_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="f_widget about-widget pl_20">
+                            <a href="index.html" class="f_logo"><img src="assets/img/logo_white.png" alt="logo" height="40"></a>
+                            <p>Taqql is a modern Earned Value Management (EVM) and field data collection platform that simplifies project tracking, field data capture, and budget performance for project-centric organizations.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="f_widget link_widget">
+                            <h3 class="f-title">Company</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="roadmap.html">Road Map</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="f_widget link_widget">
+                            <h3 class="f-title">Legal</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="privacy.html">Privacy Policy</a></li>
+                                <li><a href="terms.html">Terms of Service</a></li>
+                                <li><a href="eula.html">EULA</a></li>
+                                <li><a href="disclaimer.html">Disclaimer</a></li>
+                                <li><a href="use-policy.html">Use Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="f_widget">
+                            <h3 class="f-title">Get Started</h3>
+                            <p>Ready to streamline your project management?</p>
+                            <div class="f_subscribe">
+                                <a href="#" class="btn_get btn_hover">
+                                    <span class="btn_text">Request Beta Access</span>
+                                    <span class="btn_text">Request Beta Access</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="f_bottom">
+                            <p>© 2024 Taqql. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer area end -->
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendors/slick/slick.min.js"></script>
+    <script src="assets/vendors/parallax/parallax.js"></script>
+    <script src="assets/vendors/counterup/jquery.counterup.min.js"></script>
+    <script src="assets/vendors/counterup/jquery.waypoints.min.js"></script>
+    <script src="assets/vendors/isotope/isotope.pkgd.min.js"></script>
+    <script src="assets/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendors/magnify-pop/jquery.magnific-popup.min.js"></script>
+    <script src="assets/vendors/nice-select/jquery.nice-select.min.js"></script>
+    <script src="assets/vendors/wow/wow.min.js"></script>
+    <script src="assets/vendors/gsap/gsap.min.js"></script>
+    <script src="assets/vendors/gsap/ScrollTrigger.min.js"></script>
+    <script src="assets/vendors/gsap/SplitText.js"></script>
+    <script src="assets/vendors/gsap/ScrollSmoother.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('.toc a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active class to current section in TOC
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.api-doc');
+            const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
